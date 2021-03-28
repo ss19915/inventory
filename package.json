@@ -1,0 +1,20 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Suraj <surajsharma571994@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "watch": "rm -rfv ./packages/**/cjs && babel --watch --verbose --relative ./packages/**/src/ -d ../cjs --ignore './packages/**/src/**/*.test.js' --ignore './packages/**/src/*.test.js'",
+    "watchWin": "babel --watch --verbose --relative ./packages/**/src/ -d ../cjs --ignore './packages/**/src/**/*.test.js' --ignore './packages/**/src/*.test.js'"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.13",
+    "@babel/preset-env": "^7.13.12"
+  }
+}
