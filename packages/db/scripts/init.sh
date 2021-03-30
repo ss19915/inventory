@@ -2,7 +2,7 @@
 
 echo 'Configuring database server'
 
-for i in {1..10}
+for i in {1..100}
 do
     mysql --host=db --user=root --password=$MYSQL_ROOT_PASSWORD -e 'source /scripts/init.sql'
     if [ $? == 0 ];

@@ -1,15 +1,25 @@
 version: "3.9"
 
 services:
+  app:
+    image: node:14
+    volumes:
+      - ./:/app
+    working_dir: /app
+  watch:
+    image: node:14
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: yarn watch
   db:
-    build: ./packages/db/
+    image: mysql:8.0
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: pass123
-
   db-init:
-    build: ./packages/db/
+    image: mysql:8.0
     depends_on: 
       - db
     volumes:
@@ -17,3 +27,24 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: pass123
     command: /bin/bash /scripts/init.sh
+  api:
+    build: ./packages/api/
+    depends_on: 
+      - db-init
+    ports:
+      - 8081:8081
+    volumes:
+      - .:/app
+    working_dir: /app/packages/api
+    command: yarn start
+  ui:
+    image: node:14
+    depends_on: 
+      - api
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    working_dir: /app/packages/ui
+    command: yarn start
+    
