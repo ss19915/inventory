@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  db:
+    build: ./packages/db/
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: pass123
+
+  db-init:
+    build: ./packages/db/
+    depends_on: 
+      - db
+    volumes:
+      - ./packages/db/scripts:/scripts
+    environment:
+      MYSQL_ROOT_PASSWORD: pass123
+    command: /bin/bash /scripts/init.sh

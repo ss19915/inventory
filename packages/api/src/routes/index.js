@@ -1,8 +1,8 @@
 import express from 'express';
-import about from './about';
+import products from './products';
 
 const router = express.Router();
 
-router.use('/', about);
+router.use('/products', products);
 
 export default router;
