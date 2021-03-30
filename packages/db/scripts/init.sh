@@ -7,6 +7,7 @@ do
     mysql --host=db --user=root --password=$MYSQL_ROOT_PASSWORD -e 'show databases'
     if [ $? == 0 ];
     then
+        mysql --host=db --user=root --password=$MYSQL_ROOT_PASSWORD -e "ALTER USER root IDENTIFIED WITH mysql_native_password BY '$MYSQL_ROOT_PASSWORD'";
         mysql --host=db --user=root --password=$MYSQL_ROOT_PASSWORD -e 'source /scripts/init.sql'    
         echo -e 'Configured database server'
         break

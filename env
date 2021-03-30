@@ -1,1 +1,3 @@
-ENV_FILE="I'm defined in .env file at root of project"
+SQL_HOST=db
+SQL_USER=root
+SQL_PASSWORD=pass123
