@@ -3,8 +3,22 @@ import { Product } from '@inventory/db';
 
 const router = express.Router();
 
-router.get('/:productId', (req, res, next) => {
-    res.send('Use src/routes to add routes, use src/middleware to add middlewares like auth, and use repository to expose API endpoint methods');
+router.get('/:productId', (req, res) => {
+    const { productId } = req.params;
+
+    const onSuccess = (product) => {
+        res.send(product);
+    };
+
+    const onError = (err) => {
+        res.status(400).send(err);
+    };
+
+    const onNotFound = (err) => {
+        res.status(404).send(err);
+    };
+
+    Product.getProductById(productId, onSuccess, onNotFound, onError);
 });
 
 router.post('/', (req, res) => {
