@@ -21,6 +21,18 @@ router.get('/:productId', (req, res) => {
     Product.getProductById(productId, onSuccess, onNotFound, onError);
 });
 
+router.get('/', (req,res) => {
+    const onSuccess = (products) => {
+        res.send(products);
+    };
+
+    const onError = (err) => {
+        res.status(400).send(err);
+    };
+
+    Product.getAll(onSuccess, onError);
+});
+
 router.post('/', (req, res) => {
     const payload = req.body;
 
@@ -28,7 +40,7 @@ router.post('/', (req, res) => {
         res.status(201).send(product);
     }
     const onError = (err) => {
-        res.status(404).send(err);
+        res.status(400).send(err);
     }
 
     Product.create(payload, onSuccess, onError);

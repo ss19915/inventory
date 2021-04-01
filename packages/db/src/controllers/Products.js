@@ -23,10 +23,10 @@ export const create = (payload, onSuccess, onError) => {
         }
 
         const {
-            Name, Price, Rating
+            Name, Price, Description, Rating
         } = payload;
 
-        const queryString = `INSERT INTO Products (Name, Price, Rating) VALUES ('${Name}',${Price},${Rating})`;
+        const queryString = `INSERT INTO Products (Name, Price, Description, Rating) VALUES ('${Name}', ${Price}, ${Description}, ${Rating})`;
 
         conn.query(queryString ,(err, result) => {
             if(err) {
@@ -63,7 +63,28 @@ export const getProductById = (productId, onSuccess, onNotFound, onError) => {
 
             onSuccess(result[0]);
         });
-
     });
 };
+
+export const getAll = (onSuccess, onError) =>{
+    Pool.getConnection( (err, conn) => {
+        if(err) {
+            onError(err);
+            return;
+        };
+
+        const queryString = `SELECT * FROM Products`;
+
+        conn.query(queryString ,(err, products) => {
+            conn.release();
+
+            if(err) {
+                onError(err);
+                return;
+            }
+
+            onSuccess(products);
+        });
+    });
+}; 
 
