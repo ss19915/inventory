@@ -26,7 +26,7 @@ export const create = (payload, onSuccess, onError) => {
             Name, Price, Description, Rating
         } = payload;
 
-        const queryString = `INSERT INTO Products (Name, Price, Description, Rating) VALUES ('${Name}', ${Price}, ${Description}, ${Rating})`;
+        const queryString = `INSERT INTO Products (Name, Price, Description, Rating) VALUES ('${Name}', ${Price}, '${Description}', ${Rating})`;
 
         conn.query(queryString ,(err, result) => {
             if(err) {
