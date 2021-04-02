@@ -10,5 +10,8 @@ const API = axios.create({
 export const Product = {
     add: (payload) => {
         return API.post(RoutePaths.products, payload);
+    },
+    get: (productId) => {
+        return API.get(`${RoutePaths.products}/${productId}`);
     }
 };
