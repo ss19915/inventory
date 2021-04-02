@@ -73,7 +73,7 @@ export const getAll = (onSuccess, onError) =>{
             return;
         };
 
-        const queryString = `SELECT * FROM Products`;
+        const queryString = `SELECT ProductId, Name, Price FROM Products`;
 
         conn.query(queryString ,(err, products) => {
             conn.release();

@@ -8,10 +8,7 @@ const API = axios.create({
 })
 
 export const Product = {
-    add: (payload) => {
-        return API.post(RoutePaths.products, payload);
-    },
-    get: (productId) => {
-        return API.get(`${RoutePaths.products}/${productId}`);
-    }
+    add: (payload) => API.post(RoutePaths.products, payload),
+    get: (productId) => API.get(`${RoutePaths.products}/${productId}`),
+    getAll: () => API.get(RoutePaths.products),
 };

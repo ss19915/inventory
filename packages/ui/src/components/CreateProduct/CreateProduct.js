@@ -20,7 +20,7 @@ const CreateProduct = (props) => {
             <Grid item>
                 <Typography variant='h5'>Create Product</Typography>
                 <TextField onChange={onInputChange} id='Name' label='Name'/>
-                <TextField onChange={onInputChange} id='Price' type='number' label='Price'/>
+                <TextField onChange={onInputChange} id='Price' type='number' label='Price($)'/>
                 <TextField onChange={onInputChange} id='Rating' type='number' label='Rating'/>
             </Grid>
             <Grid item>
