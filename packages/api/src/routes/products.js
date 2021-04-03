@@ -44,6 +44,20 @@ router.post('/', (req, res) => {
     }
 
     Product.create(payload, onSuccess, onError);
-})
+});
+
+router.delete('/:productId', (req, res) => {
+    const { productId } = req.params;
+    
+    const onSuccess = (product) => {
+        res.send(product);
+    }
+
+    const onError = (err) => {
+        res.status(400).send(err);
+    };
+
+    Product.remove(productId, onSuccess, onError)
+});
 
 export default router;

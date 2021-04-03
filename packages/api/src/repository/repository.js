@@ -5,10 +5,11 @@ const REACT_APP_API_ROOT_PATH = process.env.REACT_APP_API_ROOT_PATH || 'http://l
 
 const API = axios.create({
     baseURL: REACT_APP_API_ROOT_PATH,
-})
+});
 
 export const Product = {
     add: (payload) => API.post(RoutePaths.products, payload),
     get: (productId) => API.get(`${RoutePaths.products}/${productId}`),
     getAll: () => API.get(RoutePaths.products),
+    remove: (productId) => API.delete(`${RoutePaths.products}/${productId}`),
 };

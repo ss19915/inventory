@@ -1,4 +1,5 @@
 import ListProducts from './ListProducts';
+import { Product } from '@inventory/api';
 
 const ListProductsLogic = (props) => {
     const productContainerID = 'product-container';
@@ -32,11 +33,23 @@ const ListProductsLogic = (props) => {
         }
     };
 
+    const deleteProduct = (event, productId) => {
+        event.stopPropagation();
+        event.target.disabled = true;
+
+        Product.remove(productId).then(() => window.location.reload()).catch((err)=> {
+            console.log(err);
+            alert('Error occured while deleting product');
+            event.target.disabled = false;
+        });
+    };
+
     return (
         <ListProducts
             {...props}
             productContainerID={productContainerID}
             onProductClick={onProductClick}
+            deleteProduct={deleteProduct}
         />
     );
 }

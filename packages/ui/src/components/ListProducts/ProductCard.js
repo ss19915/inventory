@@ -1,6 +1,7 @@
-import { Card, CardHeader, CardContent, Typography, Grid } from '@material-ui/core';
+import { Card, CardHeader, CardContent, Typography, Grid, IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product, deleteProduct}) => {
     const {
         ProductId,
         Name,
@@ -24,9 +25,9 @@ const ProductCard = ({product}) => {
         <Card data-product-id={ProductId}>
             <CardHeader title={header}/>
             <CardContent>
-                <Grid container alignItems='baseline' spacing={1}>
-                    <Grid item>{Rating}</Grid>
-                    <Grid item>⭐</Grid>
+                <Grid container alignItems='baseline' justify='space-between'>
+                    <Grid item>{Rating}{'  '}⭐</Grid>
+                    <Grid item><IconButton onClick={(e) => deleteProduct(e, ProductId)}><DeleteIcon/></IconButton></Grid>
                 </Grid>
             </CardContent>
         </Card>

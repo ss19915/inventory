@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import ProductCard from './ProductCard';
 
-const ListProducts = ({ products=[], onProductClick, productContainerID }) => (
+const ListProducts = ({ products=[], onProductClick, productContainerID, deleteProduct }) => (
     <Grid
         container
         justify='space-around'
@@ -15,7 +15,7 @@ const ListProducts = ({ products=[], onProductClick, productContainerID }) => (
                 key={`product${index}`}
                 item
             >
-                <ProductCard product={product}/>
+                <ProductCard product={product} deleteProduct={deleteProduct}/>
             </Grid>
         ))}
     </Grid>

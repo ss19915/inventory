@@ -1,9 +1,10 @@
+import { escape } from 'mysql';
 import Pool from '../connection';
 
 export const create = (payload, onSuccess, onError) => {
     Pool.getConnection( (err, conn) => {
         const getCreatedProduct = (productId) =>{
-            const queryString = `SELECT * FROM Products where ProductID=${productId}`;
+            const queryString = `SELECT * FROM Products where ProductID=${escape(productId)}`;
 
             conn.query(queryString ,(err, result) => {
                 conn.release();
@@ -26,7 +27,7 @@ export const create = (payload, onSuccess, onError) => {
             Name, Price, Description, Rating
         } = payload;
 
-        const queryString = `INSERT INTO Products (Name, Price, Description, Rating) VALUES ('${Name}', ${Price}, '${Description}', ${Rating})`;
+        const queryString = `INSERT INTO Products (Name, Price, Description, Rating) VALUES (${escape(Name)}, ${escape(Price)}, ${escape(Description)}, ${escape(Rating)})`;
 
         conn.query(queryString ,(err, result) => {
             if(err) {
@@ -47,7 +48,7 @@ export const getProductById = (productId, onSuccess, onNotFound, onError) => {
             return;
         };
 
-        const queryString = `SELECT * FROM Products where ProductID=${productId}`;
+        const queryString = `SELECT * FROM Products where ProductID=${escape(productId)}`;
 
         conn.query(queryString ,(err, result) => {
             conn.release();
@@ -87,4 +88,24 @@ export const getAll = (onSuccess, onError) =>{
         });
     });
 }; 
+
+export const remove = (productId, onSuccess, onError) => {
+    Pool.getConnection( (err, conn) => {
+        if(err) {
+            onError(err);
+            return;
+        };
+        
+        const queryString = `DELETE FROM Products where ProductId=${escape(productId)}`;
+
+        conn.query(queryString, (err, res) => {
+            if(err) {
+                onError(err);
+                return;
+            }
+            
+            onSuccess(res);
+        });
+    });
+};
 
