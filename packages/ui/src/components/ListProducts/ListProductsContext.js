@@ -1,12 +1,12 @@
 import { Product } from '@inventory/api';
 import CardWithDataSource from '../CardWithDataSource';
 import ListProducts from './ListProductsLogic';
-
+import { connect } from 'react-redux';
+import { updateActiveProduct } from '../../actions';
 
 const ListProductsContext = (props) => {
 
     const processResponse = res => ({products: res});
-
 
     return(    
         <CardWithDataSource
@@ -16,6 +16,10 @@ const ListProductsContext = (props) => {
             <ListProducts {...props}/>
         </CardWithDataSource>
     );
-}
+};
 
-export default ListProductsContext;
+const mapDispatchToProps = (dispatch) => ({
+    updateActiveProduct: (productId) => { dispatch(updateActiveProduct(productId)) },
+});
+
+export default connect(null, mapDispatchToProps)(ListProductsContext);

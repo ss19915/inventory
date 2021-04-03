@@ -1,18 +1,23 @@
 import ViewProduct from './ViewProduct';
 import CardWithDataSource from '../CardWithDataSource';
 import { Product } from '@inventory/api';
+import { connect } from 'react-redux';
 
 const processResponse = res => ({product: res});
 
-const ViewProductContext = ({productId}) => (
+const ViewProductContext = ({activeProduct}) => (
     <CardWithDataSource
         apiCallMethod={Product.get}
-        payload={productId}
+        payload={activeProduct}
         processResponse={processResponse}
     >
         <ViewProduct/>
     </CardWithDataSource>
 );
 
-export default ViewProductContext;
+const mapStateToProps = ({activeProduct}) => ({
+    activeProduct
+});
+
+export default connect(mapStateToProps)(ViewProductContext);
 

@@ -22,7 +22,13 @@ const ListProductsLogic = (props) => {
         let productId = getProductId(target);
 
         if(productId!==null){
-            props.onProductClick(productId)
+            const {
+                updateActiveProduct,
+                onProductClick,
+            } = props;
+
+            updateActiveProduct(productId);
+            onProductClick(productId);
         }
     };
 
