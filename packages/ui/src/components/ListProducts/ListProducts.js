@@ -1,8 +1,13 @@
 import { Grid } from '@material-ui/core';
 import ProductCard from './ProductCard';
 
-const ListProducts = ({ products=[], onProductClick }) => (
-    <Grid container spacing={2} onClick={onProductClick}>
+const ListProducts = ({ products=[], onProductClick, productContainerID }) => (
+    <Grid
+        container
+        spacing={2}
+        onClick={onProductClick}
+        id={productContainerID}
+    >
         {products.map( (product, index) =>(
             <Grid
                 key={`product${index}`}
