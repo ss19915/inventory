@@ -10,6 +10,7 @@ const ListProductsContext = (props) => {
 
     return(    
         <CardWithDataSource
+            compact
             apiCallMethod={Product.getAll}
             processResponse={processResponse}
         >

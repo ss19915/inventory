@@ -4,12 +4,14 @@ import ProductCard from './ProductCard';
 const ListProducts = ({ products=[], onProductClick, productContainerID }) => (
     <Grid
         container
-        spacing={2}
+        justify='space-around'
+        spacing={3}
         onClick={onProductClick}
         id={productContainerID}
     >
         {products.map( (product, index) =>(
             <Grid
+                xs={3}
                 key={`product${index}`}
                 item
             >

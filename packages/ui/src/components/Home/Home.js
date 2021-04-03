@@ -8,11 +8,11 @@ const Home = (props)=> {
     return (
         <BrowserRouter>
             <Header/>
-            <Paper>
+            <div elevation={0} style={{marginTop:'1.3vh', marginLeft:'3vw', marginRight:'3vw'}}>
                     <Route path='/' exact component={DefaultView}/>
                     <Route path='/products/add/' component={AddProductView}/>
                     <Route path='/products/view/' component={ViewProductView}/>
-            </Paper>
+            </div>
         </BrowserRouter>
     );
 };
