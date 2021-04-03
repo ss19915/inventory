@@ -6,7 +6,8 @@ const Compact = (props) => {
     const {
         children,
         compact,
-        label
+        label,
+        className,
     } = props;
 
     if (compact) {
@@ -15,7 +16,7 @@ const Compact = (props) => {
 
     else if (label) {
         return (
-            <Paper>
+            <Paper className={className}>
                 {label}
                 <Paper>
                     {children}
@@ -25,7 +26,7 @@ const Compact = (props) => {
     }
 
     return (
-        <Paper>
+        <Paper className={className}>
             {children}
         </Paper>
     );

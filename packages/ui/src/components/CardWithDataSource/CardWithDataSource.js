@@ -72,11 +72,11 @@ class CardWithDataSource extends React.PureComponent {
     };
 
     render() {
-        const { children, compact, label } = this.props;
+        const { children, compact, label, className } = this.props;
         const { status, apiResponse, error } = this.state;
 
         return (
-            <Compact label={label} compact={compact}>
+            <Compact label={label} compact={compact} className={className}>
                 {status === Status.LOADED &&
                     <ShowChildren
                         children={children}
