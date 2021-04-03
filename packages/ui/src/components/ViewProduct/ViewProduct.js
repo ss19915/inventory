@@ -1,24 +1,31 @@
-import { Divider, Typography } from '@material-ui/core';
-import React from 'react';
+import { Divider, Grid, Paper, Typography } from "@material-ui/core";
+import React from "react";
 
-const ViewProduct = ({product={}}) => {
-    const {
-        Name,
-        Description,
-        Rating,
-        Price,
-    } = product;
+const ViewProduct = ({ product = {} }) => {
+  const { Name, Description, Rating, Price } = product;
 
-    return (
-        <div style={{padding:'1em'}}>
-            <Typography variant='h5'>View Product</Typography>
-            <Divider />
-            <Typography >Name: {Name}</Typography>
-            <Typography >Price: {Price}</Typography>
-            <Typography >Rating: {Rating}</Typography>
-            <Typography >Description: {Description}</Typography>
-        </div>
-    );
+  return (
+    <Paper style={{ padding: '1em'}}>
+      <Grid container direction="column" spacing={2} styles={{ margin: "1em" }}>
+        <Grid item>
+          <Typography variant="h5">View Product</Typography>
+        </Grid>
+        <Divider />
+        <Grid item>
+          <Typography>Name: {Name}</Typography>
+        </Grid>
+        <Grid item>
+          <Typography>Price: {Price}</Typography>
+        </Grid>
+        <Grid item>
+          <Typography>Rating: {Rating}</Typography>
+        </Grid>
+        <Grid item>
+          <Typography>Description: {Description}</Typography>
+        </Grid>
+      </Grid>
+    </Paper>
+  );
 };
 
 export default ViewProduct;

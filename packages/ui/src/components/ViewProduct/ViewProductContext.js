@@ -7,6 +7,7 @@ const processResponse = res => ({product: res});
 
 const ViewProductContext = ({activeProduct}) => (
     <CardWithDataSource
+        compact
         apiCallMethod={Product.get}
         payload={activeProduct}
         processResponse={processResponse}
