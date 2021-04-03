@@ -1,7 +1,11 @@
-import CreateProduct from '../CreateProduct';
-const Home = ()=> {
+import { Paper } from '@material-ui/core';
+import DefaultView from '../Views';
+
+const Home = (props)=> {
     return (
-        <CreateProduct/>
+        <Paper>
+            <DefaultView/>
+        </Paper>
     );
 };
 
